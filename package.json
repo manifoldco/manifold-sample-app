@@ -1,0 +1,34 @@
+{
+  "name": "quickstart",
+  "version": "0.0.1",
+  "description": "Really quick guide to use lodna with Manifold",
+  "main": "server.js",
+  "scripts": {
+    "client": "babel client/src -d client --ignore 'src/**/*.test.js'",
+    "client:watch": "babel client/src --watch -d client --ignore 'src/**/*.test.js'",
+    "build": "npm run babel && npm run postcss",
+    "postcss": "postcss client/src/main.css -o client/assets/main.css",
+    "postcss:watch": "postcss client/src/main.css -o client/assets/main.css -w",
+    "server": "babel server/src -d server --ignore 'src/**/*.test.js'",
+    "server:watch": "babel server/src --watch -d server --ignore 'src/**/*.test.js'",
+    "start": "concurrently \"node server\" \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "postcss": "^6.0.19",
+    "postcss-cli": "^5.0.0",
+    "postcss-cssnext": "^3.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
