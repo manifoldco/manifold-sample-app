@@ -9,9 +9,10 @@
     "build": "npm run babel && npm run postcss",
     "postcss": "postcss client/src/main.css -o client/assets/main.css",
     "postcss:watch": "postcss client/src/main.css -o client/assets/main.css -w",
+    "seed": "node server/tasks/seed",
     "server": "babel server/src -d server --ignore 'src/**/*.test.js'",
     "server:watch": "babel server/src --watch -d server --ignore 'src/**/*.test.js'",
-    "start": "concurrently \"node server\" \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\""
+    "start": "concurrently \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\" \"nodemon server\""
   },
   "keywords": [],
   "author": "",
@@ -21,12 +22,18 @@
     "@babel/core": "^7.0.0-beta.40",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
+    "bcrypt": "^1.0.3",
     "cors": "^2.8.4",
     "dotenv": "^5.0.0",
     "express": "^4.16.2",
+    "nodemon": "^1.15.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.4.1",
     "postcss": "^6.0.19",
     "postcss-cli": "^5.0.0",
-    "postcss-cssnext": "^3.1.0"
+    "postcss-cssnext": "^3.1.0",
+    "sequelize": "^4.34.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"
