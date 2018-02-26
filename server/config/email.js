@@ -5,15 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.client = void 0;
 
-var _nodeSes = _interopRequireDefault(require("node-ses"));
+var _mailgunJs = _interopRequireDefault(require("mailgun-js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// SESKEY: AWS Access Key ID for SES-capable IAM user
-// SESSECRET: AWS Secret Access Key for SES-capable IAM user
-const client = _nodeSes.default.createClient({
-  key: process.env.SESKEY,
-  secret: process.env.SESSECRET
+const client = (0, _mailgunJs.default)({
+  apiKey: process.env.MAILGUN_APIKEY,
+  domain: process.env.MAILGUN_DOMAIN
 });
-
 exports.client = client;
