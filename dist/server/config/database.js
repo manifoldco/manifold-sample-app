@@ -50,7 +50,7 @@ const User = sequelize.define('user', {
 }, {
   instanceMethods: {
     generateHash: function (password) {
-      return _bcrypt.default.hashSync(password, _bcrypt.default.genSaltSync(8), null);
+      return _bcrypt.default.hashSync(password, _bcrypt.default.genSaltSync(10), null);
     },
     validatePassword: function (password) {
       return _bcrypt.default.compareSync(password, this.password);

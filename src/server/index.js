@@ -22,8 +22,10 @@ app.use(passport.session());
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
 app.post(
   '/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  (req, res) => res.redirect('/log-in-success') // this page isn’t password-protected to reduce the code in this example
+  passport.authenticate('local', {
+    successRedirect: '/login-in-success', // this page isn’t password-protected to reduce the code in this example
+    failureRedirect: '/?password-incorrect',
+  })
 );
 app.post('/reset', (req, res) => {
   sendResetEmail(req.body.email);
