@@ -12,6 +12,8 @@ var _passport = _interopRequireDefault(require("passport"));
 
 require("./config/passport");
 
+var _sendResetEmail = require("./tasks/sendResetEmail");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* Express */
@@ -25,9 +27,13 @@ app.use(_passport.default.initialize());
 app.use(_passport.default.session());
 /* Routes */
 
-app.use(_express.default.static(_path.default.resolve(__dirname, '..', './client')));
+app.use(_express.default.static(_path.default.resolve(__dirname, '..', 'client')));
 app.post('/login', _passport.default.authenticate('local', {
   failureRedirect: '/login'
 }), (req, res) => res.redirect('/log-in-success') // this page isn’t password-protected to reduce the code in this example
 );
+app.post('/reset', (req, res) => {
+  (0, _sendResetEmail.sendResetEmail)(req.body.email);
+  res.sendFile(_path.default.resolve(__dirname, '..', 'client', 'reset', 'email-sent.html'));
+});
 app.listen(8080);

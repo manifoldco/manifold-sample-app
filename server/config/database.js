@@ -58,3 +58,8 @@ const User = sequelize.define('user', {
   }
 });
 exports.User = User;
+User.beforeCreate((user, options) => _bcrypt.default.hash(user.password, 10).then(hash => {
+  user.password = hash;
+}).catch(err => {
+  throw new Error();
+}));

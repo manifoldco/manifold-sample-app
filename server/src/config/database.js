@@ -49,3 +49,14 @@ export const User = sequelize.define(
     },
   }
 );
+
+User.beforeCreate((user, options) =>
+  bcrypt
+    .hash(user.password, 10)
+    .then(hash => {
+      user.password = hash;
+    })
+    .catch(err => {
+      throw new Error();
+    })
+);

@@ -17,11 +17,11 @@
 
   <main>
     <p>Forgot your password? No problem! Enter your email below:</p>
-    <form id="form-reset">
+    <form id="form-reset" method="POST" action="/reset">>
       <fieldset>
         <label>
           Email
-          <input type="email" maxlength="100">
+          <input type="email" name="email">
         </label>
       </fieldset>
       <button type="submit">Send Email</button>
