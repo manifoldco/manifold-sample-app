@@ -12,11 +12,12 @@ verysecurepassword
 ```
 
 The `master` branch is for the original AWS starting app. To see the migration
-changes, view the PR for `new-manifold`.
+changes, view the PR for `manifold`.
 
 ## Local Installation
 
 ```
+brew install manifold-cli
 yarn
 ```
 
