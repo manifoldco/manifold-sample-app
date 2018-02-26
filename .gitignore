@@ -1,7 +1,6 @@
 .cache
 .DS_Store
 .env
-dist/
 node_modules/
 
 # Elastic Beanstalk Files

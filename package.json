@@ -4,15 +4,15 @@
   "description": "Really quick guide to use lodna with Manifold",
   "main": "server.js",
   "scripts": {
-    "client": "babel client/src -d client --ignore 'src/**/*.test.js'",
-    "client:watch": "babel client/src --watch -d client --ignore 'src/**/*.test.js'",
+    "client": "babel src/client -d dist/client --ignore 'src/**/*.test.js'",
+    "client:watch": "babel src/client --watch -d dist/client --ignore 'src/**/*.test.js'",
     "build": "npm run babel && npm run postcss",
-    "postcss": "postcss client/src/main.css -o client/assets/main.css",
-    "postcss:watch": "postcss client/src/main.css -o client/assets/main.css -w",
-    "seed": "node server/tasks/seed",
-    "server": "babel server/src -d server --ignore 'src/**/*.test.js'",
-    "server:watch": "babel server/src --watch -d server --ignore 'src/**/*.test.js'",
-    "start": "concurrently \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\" \"nodemon server\""
+    "postcss": "postcss src/client/main.css -o dist/client/assets/main.css",
+    "postcss:watch": "postcss src/client/main.css -o dist/client/assets/main.css -w",
+    "seed": "node dist/server/tasks/seed",
+    "server": "babel src/server -d dist/server --ignore 'src/**/*.test.js'",
+    "server:watch": "babel src/server --watch -d dist/server --ignore 'src/**/*.test.js'",
+    "start": "concurrently \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\" \"nodemon dist/server\""
   },
   "keywords": [],
   "author": "",
