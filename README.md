@@ -1,27 +1,22 @@
 # Manifold Sample App
 
-## Example
-
-🖥 https://manifold-example-app.now.sh
-
-Credentials:
-
-```
-sample-app@manifold.co
-verysecurepassword
-```
-
-The `master` branch is for the original AWS starting app. To see the migration
-changes, view the PR for `new-manifold`.
+This is the Original AWS version. The updated Manifold version lives at [manifold][branch-manifold].
 
 ## Local Installation
 
-```
+```sh
 yarn
+yarn seed
 ```
+
+Configure the values in [`.env.example`][dotenv] and save as `.env` using
+your own values from AWS RDS Postgres and AWS Simple Email.
 
 ## Development Server
 
+```sh
+yarn dev
 ```
-yarn start
-```
+
+[branch-manifold]: https://github.com/manifoldco/manifold-sample-app/
+[dotenv]: ./.env.example

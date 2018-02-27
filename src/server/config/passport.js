@@ -11,13 +11,30 @@ import { User } from './database';
 /* Passport */
 
 passport.use(
-  new LocalStrategy({ usernameField: 'email' }, (username, password, done) =>
-    User.findOne({ username }, (err, user) => {
-      if (err) return done(err);
-      if (!user) return done(null, false);
-      if (!user.verifyPassword(password)) return done(null, false);
-      return done(null, user);
-    })
+  'local',
+  new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true,
+    },
+    (req, email, password, done) =>
+      User.findOne({ where: { email } }, (err, user) => {
+        if (err) return done(err);
+        if (!user)
+          return done(
+            null,
+            false,
+            req.flash('loginMessage', 'No user found with email / password.')
+          );
+        if (!user.verifyPassword(password))
+          return done(
+            null,
+            false,
+            req.flash('loginMessage', `Incorrect password for ${email}.`)
+          );
+        return done(null, user);
+      })
   )
 );
 

@@ -6,13 +6,14 @@
   "scripts": {
     "client": "babel src/client -d dist/client --ignore 'src/**/*.test.js'",
     "client:watch": "babel src/client --watch -d dist/client --ignore 'src/**/*.test.js'",
-    "build": "npm run babel && npm run postcss",
+    "dev": "concurrently \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\" \"nodemon dist/server\"",
+    "build": "npm run client && npm run server && npm run postcss",
     "postcss": "postcss src/client/main.css -o dist/client/assets/main.css",
     "postcss:watch": "postcss src/client/main.css -o dist/client/assets/main.css -w",
     "seed": "node dist/server/tasks/seed",
     "server": "babel src/server -d dist/server --ignore 'src/**/*.test.js'",
     "server:watch": "babel src/server --watch -d dist/server --ignore 'src/**/*.test.js'",
-    "start": "concurrently \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\" \"nodemon dist/server\""
+    "start": "nodemon dist/server"
   },
   "keywords": [],
   "author": "",

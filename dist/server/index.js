@@ -29,9 +29,10 @@ app.use(_passport.default.session());
 
 app.use(_express.default.static(_path.default.resolve(__dirname, '..', 'client')));
 app.post('/login', _passport.default.authenticate('local', {
-  failureRedirect: '/login'
-}), (req, res) => res.redirect('/log-in-success') // this page isn’t password-protected to reduce the code in this example
-);
+  successRedirect: '/login-in-success',
+  // this page isn’t password-protected to reduce the code in this example
+  failureRedirect: '/?password-incorrect'
+}));
 app.post('/reset', (req, res) => {
   (0, _sendResetEmail.sendResetEmail)(req.body.email);
   res.sendFile(_path.default.resolve(__dirname, '..', 'client', 'reset', 'email-sent.html'));
