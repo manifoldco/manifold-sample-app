@@ -14,14 +14,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 /* Passport */
-_passport.default.use(new _passportLocal.Strategy({
-  usernameField: 'email'
-}, (username, password, done) => _database.User.findOne({
-  username
+_passport.default.use('local', new _passportLocal.Strategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, (req, email, password, done) => _database.User.findOne({
+  where: {
+    email
+  }
 }, (err, user) => {
   if (err) return done(err);
-  if (!user) return done(null, false);
-  if (!user.verifyPassword(password)) return done(null, false);
+  if (!user) return done(null, false, req.flash('loginMessage', 'No user found with email / password.'));
+  if (!user.verifyPassword(password)) return done(null, false, req.flash('loginMessage', `Incorrect password for ${email}.`));
   return done(null, user);
 })));
 
