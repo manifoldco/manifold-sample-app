@@ -18,8 +18,10 @@ _passport.default.use('local', new _passportLocal.Strategy({
   usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
-}, (email, password) => _database.User.findOne({
-  'local.email': email
+}, (req, email, password, done) => _database.User.findOne({
+  where: {
+    email
+  }
 }, (err, user) => {
   if (err) return done(err);
   if (!user) return done(null, false, req.flash('loginMessage', 'No user found with email / password.'));
