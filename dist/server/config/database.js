@@ -11,15 +11,18 @@ var _fs = _interopRequireDefault(require("fs"));
 
 var _dotenv = _interopRequireDefault(require("dotenv"));
 
+var _dotenvExpand = _interopRequireDefault(require("dotenv-expand"));
+
 var _bcrypt = _interopRequireDefault(require("bcrypt"));
 
 var _sequelize = _interopRequireDefault(require("sequelize"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_dotenv.default.config();
-/* Config */
+const ENV = _dotenv.default.config();
 
+(0, _dotenvExpand.default)(ENV);
+/* Config */
 
 const sequelize = new _sequelize.default({
   database: process.env.PGDATABASE,

@@ -24,7 +24,10 @@ yarn
 yarn seed
 ```
 
-Configure the values in [`.env`][dotenv] to get started.
+After creating a project in [Manifold Dashboard][dashboard], edit the
+`.manifoldrc.example` file and save as `.manifoldrc` (delete `team` if you’re
+not using Manifold Teams). Running `yarn start` will automatically inline
+variables from your Manifold project!
 
 ## Development Server
 
@@ -44,5 +47,5 @@ To deploy your own instance.
 
 [branch-master]: https://github.com/manifoldco/manifold-sample-app
 [branch-manifold]: https://github.com/manifoldco/manifold-sample-app/tree/manifold
-[dotenv]: ./.env
+[dashboard]: https://dashboard.manifold.co
 [zeit-now]: https://zeit.co/now

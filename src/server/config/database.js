@@ -1,10 +1,12 @@
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
+import dotenvExpand from 'dotenv-expand';
 import bcrypt from 'bcrypt';
 import Sequelize from 'sequelize';
 
-dotenv.config();
+const ENV = dotenv.config();
+dotenvExpand(ENV);
 
 /* Config */
 
