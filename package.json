@@ -1,41 +1,45 @@
 {
   "name": "quickstart",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Really quick guide to use lodna with Manifold",
   "main": "server.js",
+  "engines": {
+    "node": ">8.6.0"
+  },
   "scripts": {
-    "client": "babel src/client -d dist/client --ignore 'src/**/*.test.js'",
-    "client:watch": "babel src/client --watch -d dist/client --ignore 'src/**/*.test.js'",
-    "dev": "concurrently \"npm run server:watch\" \"npm run client:watch\" \"npm run postcss:watch\" \"nodemon dist/server\"",
-    "build": "npm run client && npm run server && npm run postcss",
-    "postcss": "postcss src/client/main.css -o dist/client/assets/main.css",
-    "postcss:watch": "postcss src/client/main.css -o dist/client/assets/main.css -w",
-    "seed": "node dist/server/tasks/seed",
-    "server": "babel src/server -d dist/server --ignore 'src/**/*.test.js'",
-    "server:watch": "babel src/server --watch -d dist/server --ignore 'src/**/*.test.js'",
-    "start": "nodemon dist/server"
+    "client": "babel src -d dist --ignore 'src/**/*.test.js'",
+    "client:watch": "babel src --watch -d dist --ignore 'src/**/*.test.js'",
+    "dev": "manifold run 'npm run dev:command'",
+    "dev:command":
+      "concurrently 'npm run client:watch' 'npm run postcss:watch' 'nodemon -- --experimental-modules server/index.mjs'",
+    "build": "manifold run 'npm run client && npm run postcss'",
+    "postcss": "postcss src/main.css -o dist/client/assets/main.css",
+    "postcss:watch": "postcss src/main.css -o dist/assets/main.css -w",
+    "seed": "node server/tasks/seed --experimental-modules",
+    "start": "manifold run 'nodemon server/index.mjs -- --experimental-modules'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.0.0-beta.40",
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/cli": "^7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
     "bcrypt": "^1.0.3",
     "cors": "^2.8.4",
-    "dotenv": "^5.0.0",
-    "express": "^4.16.2",
+    "dotenv": "^5.0.1",
+    "dotenv-expand": "^4.2.0",
+    "express": "^4.16.3",
     "mailgun-js": "^0.16.0",
-    "nodemon": "^1.15.1",
+    "nodemon": "^1.17.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.4.1",
-    "postcss": "^6.0.19",
+    "postcss": "^6.0.21",
     "postcss-cli": "^5.0.0",
     "postcss-cssnext": "^3.1.0",
-    "sequelize": "^4.34.0"
+    "sequelize": "^4.37.5"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"

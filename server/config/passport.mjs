@@ -4,15 +4,17 @@
  */
 
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
+import PassportLocal from 'passport-local';
 
 import { User } from './database';
+
+const { Strategy } = PassportLocal;
 
 /* Passport */
 
 passport.use(
   'local',
-  new LocalStrategy(
+  new Strategy(
     {
       usernameField: 'email',
       passwordField: 'password',

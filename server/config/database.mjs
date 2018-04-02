@@ -1,26 +1,31 @@
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
+import dotenvExpand from 'dotenv-expand';
 import bcrypt from 'bcrypt';
 import Sequelize from 'sequelize';
 
-dotenv.config();
+const ENV = dotenv.config();
+dotenvExpand(ENV);
+
+console.log(ENV);
 
 /* Config */
 
 const sequelize = new Sequelize({
-  database: process.env.PGDATABASE,
+  database: ENV.MANIFOLD_PGDATABASE,
   dialect: 'postgres',
-  host: process.env.PGHOST,
-  password: process.env.PGPASSWORD,
+  host: ENV.MANIFOLD_PGHOST,
+  password: ENV.MANIFOLD_PGPASSWORD,
   pool: {
     max: 5,
     min: 0,
     acquire: 30000,
     idle: 10000,
   },
-  port: process.env.PGPORT,
-  username: process.env.PGUSER,
+  operatorsAliases: false,
+  port: ENV.MANIFOLD_PGPORT,
+  username: ENV.MANIFOLD_PGUSER,
 });
 
 /* Models */

@@ -1,5 +1,8 @@
 # Manifold Sample App
 
+You’re viewing the updated **Manifold** version of the app. To see the old
+AWS version, view the [old-aws][branch-old-aws] branch.
+
 ## Example
 
 🖥 https://manifold-sample-app-ohrnvaytsi.now.sh
@@ -11,20 +14,18 @@ sample-app@manifold.co
 verysecurepassword
 ```
 
-### Versions
-
-* [AWS version][branch-master] (`master` branch)
-* [Manifold + JawsDB Postgres + Mailgun][branch-manifold] version (`manifold` branch)
-
 ## Local Installation
 
 ```sh
-brew install manifold-cli
+brew install manifoldco/brew/manifold-cli
 yarn
 yarn seed
 ```
 
-Configure the values in [`.env`][dotenv] to get started.
+After creating a project in [Manifold Dashboard][dashboard], edit the
+`.manifoldrc.example` file and save as `.manifoldrc` (delete `team` if you’re
+not using Manifold Teams). Running `yarn dev` or `yarn start` will
+automatically inline variables from your Manifold project!
 
 ## Development Server
 
@@ -42,7 +43,6 @@ now
 
 To deploy your own instance.
 
-[branch-master]: https://github.com/manifoldco/manifold-sample-app
-[branch-manifold]: https://github.com/manifoldco/manifold-sample-app/tree/manifold
-[dotenv]: ./.env
+[branch-old-aws]: https://github.com/manifoldco/manifold-sample-app/tree/old-aws
+[dashboard]: https://dashboard.manifold.co
 [zeit-now]: https://zeit.co/now
