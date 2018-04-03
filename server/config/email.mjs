@@ -1,9 +1,11 @@
-import ses from 'node-ses';
+import dotenv from 'dotenv';
+import dotenvExpand from 'dotenv-expand';
+import mailgun from 'mailgun-js';
 
-// SESKEY: AWS Access Key ID for SES-capable IAM user
-// SESSECRET: AWS Secret Access Key for SES-capable IAM user
+const ENV = dotenv.config();
+dotenvExpand(ENV);
 
-export const client = ses.createClient({
-  key: process.env.SESKEY,
-  secret: process.env.SESSECRET,
+export const client = mailgun({
+  apiKey: ENV.MANIFOLD_MAILGUN_APIKEY,
+  domain: ENV.MANIFOLD_MAILGUN_DOMAIN,
 });
