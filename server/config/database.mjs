@@ -8,8 +8,6 @@ import Sequelize from 'sequelize';
 const ENV = dotenv.config();
 dotenvExpand(ENV);
 
-console.log(ENV);
-
 /* Config */
 
 const sequelize = new Sequelize({
