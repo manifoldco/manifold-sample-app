@@ -1,16 +1,15 @@
 {
   "name": "quickstart",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Really quick guide to use lodna with Manifold",
   "main": "server.js",
   "engines": {
-    "node": ">8.5.0"
+    "node": ">8.6.0"
   },
   "scripts": {
     "client": "babel src -d dist --ignore 'src/**/*.test.js'",
     "client:watch": "babel src --watch -d dist --ignore 'src/**/*.test.js'",
-    "dev":
-      "concurrently 'npm run client:watch' 'npm run postcss:watch' 'nodemon -- --experimental-modules server/index.mjs'",
+    "dev": "concurrently 'npm run client:watch' 'npm run postcss:watch' 'nodemon -- --experimental-modules server/index.mjs'",
     "build": "npm run client && npm run server && npm run postcss",
     "postcss": "postcss src/main.css -o dist/assets/main.css",
     "postcss:watch": "postcss src/main.css -o dist/assets/main.css -w",
