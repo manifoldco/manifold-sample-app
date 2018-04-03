@@ -19,6 +19,7 @@ const sequelize = new Sequelize({
     acquire: 30000,
     idle: 10000,
   },
+  operatorsAliases: false,
   port: process.env.PGPORT,
   username: process.env.PGUSER,
 });
