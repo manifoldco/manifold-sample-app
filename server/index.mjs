@@ -19,7 +19,7 @@ app.use(passport.session());
 
 /* Routes */
 
-app.use(express.static(path.resolve(__dirname, '..', 'client')));
+app.use(express.static('./dist'));
 app.post(
   '/login',
   passport.authenticate('local', {
@@ -29,9 +29,7 @@ app.post(
 );
 app.post('/reset', (req, res) => {
   sendResetEmail(req.body.email);
-  res.sendFile(
-    path.resolve(__dirname, '..', 'client', 'reset', 'email-sent.html')
-  );
+  res.sendFile(path.resolve('./dist/reset/email-sent.html'));
 });
 
 app.listen(8080);
