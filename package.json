@@ -10,12 +10,11 @@
     "client": "babel src -d dist --ignore 'src/**/*.test.js'",
     "client:watch": "babel src --watch -d dist --ignore 'src/**/*.test.js'",
     "dev": "manifold run 'npm run dev:command'",
-    "dev:command":
-      "concurrently 'npm run client:watch' 'npm run postcss:watch' 'nodemon -- --experimental-modules server/index.mjs'",
+    "dev:command": "concurrently 'npm run client:watch' 'npm run postcss:watch' 'nodemon -- --experimental-modules server/index.mjs'",
     "build": "manifold run 'npm run client && npm run postcss'",
     "postcss": "postcss src/main.css -o dist/client/assets/main.css",
     "postcss:watch": "postcss src/main.css -o dist/assets/main.css -w",
-    "seed": "node server/tasks/seed --experimental-modules",
+    "seed": "node server/tasks/seed.mjs --experimental-modules",
     "start": "manifold run 'nodemon server/index.mjs -- --experimental-modules'"
   },
   "keywords": [],
